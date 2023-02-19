@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Product Matching Using Machine Learning</title>
-</head>
 <body>
 	<h1 align="center" id="title">Product Matching Using Machine Learning</h1>
 	<p align="center"><img src="https://socialify.git.ci/paritoshtripathi935/Product-Matching/image?description=1&amp;descriptionEditable=The%20topic%20is%20about%20product%20matching%20via%20Machine%20Learning.&amp;font=Rokkitt&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;theme=Light" alt="project-image"></p>
