@@ -1,2 +1,5 @@
-# Product-Matching
-The topic is about product matching via Machine Learning. This involves using various machine learning techniques such as natural language processing, image recognition, and collaborative filtering algorithms to match similar products together.
+<h1 align="center" id="title">Product Matching Using Machine Learning</h1>
+
+<p align="center"><img src="https://socialify.git.ci/paritoshtripathi935/Product-Matching/image?description=1&amp;descriptionEditable=The%20topic%20is%20about%20product%20matching%20via%20Machine%20Learning.&amp;font=Rokkitt&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;theme=Light" alt="project-image"></p>
+
+<p id="description">The topic is about product matching via Machine Learning. This involves using various machine learning techniques such as natural language processing image recognition and collaborative filtering algorithms to match similar products together. To implement this project a low-level project structure is suggested with different folders for data notebooks source code and testing. The sequence of model implementation and useful Python libraries for product matching via Machine Learning are also described. Finally a 3-month timeline is presented for the development to deployment of the product matching project.</p>
