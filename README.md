@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Product Matching Using Machine Learning</title>
+  <title>Product Matching Using Machine Learning</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rokkitt&display=swap" rel="stylesheet">
 </head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#title">Home</a></li>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#project-structure">Project Structure</a></li>
+        <li><a href="#model-implementation">Model Implementation</a></li>
+        <li><a href="#python-libraries">Python Libraries</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+      </ul>
+    </nav>
+  </header>
 <body>
 	<h1 align="center" id="title">Product Matching Using Machine Learning</h1>
 	<p align="center"><img src="https://socialify.git.ci/paritoshtripathi935/Product-Matching/image?description=1&amp;descriptionEditable=The%20topic%20is%20about%20product%20matching%20via%20Machine%20Learning.&amp;font=Rokkitt&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;theme=Light" alt="project-image"></p>
