@@ -1,4 +1,3 @@
-# Product Matching Using Machine Learning
 <!DOCTYPE html>
 <html>
 <head>
