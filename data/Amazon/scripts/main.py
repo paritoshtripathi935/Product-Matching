@@ -8,14 +8,13 @@ class Scraper:
     def __init__(self):
         self.stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") 
         self.storagePath = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "../Amazon/"
+            os.path.dirname(os.path.abspath(__file__)), "../"
         )
         logging.basicConfig(
             filename=self.storagePath + "logs/amazonScraper_{}.log".format(self.stamp),
             level=logging.INFO,
             filemode="w",
         )
-
 
 
 
