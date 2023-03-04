@@ -1,0 +1,10 @@
+jupyter 
+scikit-learn 
+pandas 
+numpy 
+matplotlib 
+seaborn 
+tensorflow 
+flask 
+sqlite3 
+openai
