@@ -14,7 +14,8 @@ class AmazonDatabaseConnector:
         self.cur.execute("CREATE TABLE product_matches (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER NOT NULL, match_id INTEGER NOT NULL, FOREIGN KEY (product_id) REFERENCES products(id), FOREIGN KEY (match_id) REFERENCES products(id));")
         self.conn.commit()
     
-    def insertProduct(self, sku, name, description, image_path, category):
-        self.cur.execute("INSERT INTO products (id, name, description, image_path, category) VALUES (?, ?, ?, ?, ?)", (sku, name, description, image_path, category))
+    def insertProduct(self, productDetails):
+        self.cur.execute("INSERT INTO TABLE products (id) VALUES ( ? )", (productDetails["sku"],))
         self.conn.commit()
-        return self.cur.lastrowid
+        
+        

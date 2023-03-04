@@ -19,6 +19,7 @@ class SeleniumScraper:
     def __init__(self, timeout=10):
         self.timeout = timeout
         self.session = httpx.AsyncClient(timeout=self.timeout)
+        self.reqSession = requests.Session()
         self.stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         self.storagePath = os.path.join(
             os.path.dirname(os.path.abspath(__file__)), "../"
@@ -70,10 +71,7 @@ class SeleniumScraper:
     
     def fetch_request_normal(self, url, params=None):
         try:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
-            }
-            response = requests.get(url, headers=headers)
+            response = self.reqSession.get(url, headers=self.headers)
 
             if response.status_code == 200:
                 print("Response status code successful for url: {} and status code: {}".format(url, 200))
@@ -96,7 +94,6 @@ class SeleniumScraper:
     def get_xpath_link(self, doc, xpath, website):
         try:
             name = doc.xpath("".join(xpath))
-            print(name)
             for i in range(len(name)):
                 if name[i].startswith("/"):
                     name[i] = website + name[i]
@@ -112,7 +109,7 @@ class SeleniumScraper:
         
     def get_selenium_driver(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
+        #chrome_options.add_argument("--headless")
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
@@ -125,9 +122,9 @@ class SeleniumScraper:
         driver = webdriver.Chrome(chrome_options=chrome_options)
         return driver
 
-    async def fetch_request_selenium(self, url, waiting_time=1):
+    def fetch_request_selenium(self, url, waiting_time=1):
         try:
-            driver = await self.get_selenium_driver()
+            driver = self.get_selenium_driver()
             driver.get(url)
             time.sleep(waiting_time)
             doc = html.fromstring(driver.page_source)
