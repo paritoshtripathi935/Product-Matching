@@ -30,11 +30,12 @@ if __name__ == '__main__':
 
     # Log start of scraper
     logging.info("Starting Amazon Scraper")
+    logging.info(AmazonDatabaseConnector(scraper.stamp).welcomeMessage)
 
     # make db amazon.db if it doesn't exist
     if not os.path.exists(scraper.storagePath + "amazon.db"):
         logging.info("Creating amazon.db")  
-        db = AmazonDatabaseConnector()
+        db = AmazonDatabaseConnector(scraper.stamp)
         db.schemaMaker()
     
     
