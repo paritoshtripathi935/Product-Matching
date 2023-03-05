@@ -13,6 +13,8 @@ import warnings
 import requests
 import json
 import ndjson
+from useragent import get_ua
+
 warnings.filterwarnings("ignore")
 
 class SeleniumScraper:
@@ -61,7 +63,7 @@ class SeleniumScraper:
                 response.raise_for_status()
                 if response.status_code == 200:
                     return response.text
-                
+            
         except Exception as e:
             logging.info(
                 "Exception occurred for url: {} and exception: {}".format(url, e)
@@ -71,10 +73,12 @@ class SeleniumScraper:
     
     def fetch_request_normal(self, url, params=None):
         try:
-            response = self.reqSession.get(url, headers=self.headers)
+            headers = {
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+            }
+            response = self.reqSession.get(url, headers=headers)
 
             if response.status_code == 200:
-                print("Response status code successful for url: {} and status code: {}".format(url, 200))
                 return response.text
             
             if response.status_code == 301:
@@ -83,11 +87,16 @@ class SeleniumScraper:
                 response.raise_for_status()
                 if response.status_code == 200:
                     return response.text
-            
+                
+            if response.status_code == 503:
+                print("Response status code successful for url: {} and status code: {}".format(url, 503))
+                return None
+                        
         except Exception as e:
             logging.info(
                 "Exception occurred for url: {} and exception: {}".format(url, e)
             )
+            print("Exception occurred for url: {} and exception: {}".format(url, e))
             pass
             return None
         
@@ -128,6 +137,7 @@ class SeleniumScraper:
             driver.get(url)
             time.sleep(waiting_time)
             doc = html.fromstring(driver.page_source)
+            print("Response status code successful for url: {} and status code: {}".format(url, 200))
             logging.info("Response status code successful for url: {} and status code: {}".format(url, 200))
             driver.close()
             return doc
