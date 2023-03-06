@@ -171,7 +171,6 @@ if __name__ == '__main__':
         db.schemaMaker()
     
     scraper.db = AmazonDatabaseConnector(scraper.stamp)
-
     for keyword in product_categories:
         scraper.main(keyword)
         scraper.pagination = 1
