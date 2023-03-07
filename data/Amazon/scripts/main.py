@@ -137,7 +137,9 @@ class Scraper:
         products = []
         for page in range(1, self.pagination+1):
             products.extend(self.getProducts(keyword, page))
-        
+            if page > 3:
+                break
+
         if self.pagination > 1:
             for page in range(2, self.pagination+1):
                 products.extend(self.getProducts(keyword, page))
