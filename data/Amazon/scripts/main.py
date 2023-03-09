@@ -142,8 +142,6 @@ class Scraper:
         if self.pagination > 1:
             for page in range(2, self.pagination+1):
                 products.extend(self.getProducts(keyword, page))
-                if page >3:
-                    break
 
         # get product details
         with ThreadPoolExecutor(max_workers=10) as executor:
