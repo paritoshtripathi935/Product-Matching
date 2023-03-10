@@ -36,7 +36,6 @@ class Scraper:
     def getProducts(self, keyword, page):
         try:
             url = self.url.format(keyword, page, page)
-            print(f"Scraping {url}")
 
             response = SeleniumScraper.fetch_request_normal(url)
 
@@ -60,7 +59,7 @@ class Scraper:
             logging.error(f"Error while scraping products for keyword {keyword} on page {page}: {e}")
             return []        
 
-    def getProductDetails(self, productUrl):
+    def getProductDetails(self, productUrl): 
         try:
             response = SeleniumScraper.fetch_request_normal(productUrl)
             if response == None:
@@ -85,16 +84,18 @@ class Scraper:
         try:
             description = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="productDescription"]//span//text()'))
             description = " ".join(description)
-        except:
+        except Exception as e:
             description = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="feature-bullets"]//span//text()'))
             description = " ".join(description)
+            logging.error(f"Error while scraping product description for product {productUrl}: {e}")
 
         try:
             image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="landingImage"]//@src'))
             image_path = image_path[0]
-        except:
+        except Exception as e:
             image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="imgTagWrapperId"]//@src'))
             image_path = ''.join(image_path)
+            logging.error(f"Error while scraping product image for product {productUrl}: {e}")
 
         category = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@class="a-link-normal a-color-tertiary"]//text()'))
         try:
@@ -129,7 +130,7 @@ class Scraper:
         productDetails["timestamp"] = str(self.stamp)
         productDetails["URL"] = str(productUrl)
         
-        print(f"Scraping {productDetails['URL']}")
+        print(productDetails)
         return productDetails
 
     def main(self, keyword):

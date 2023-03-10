@@ -137,7 +137,6 @@ class SeleniumScraper:
             driver.get(url)
             time.sleep(waiting_time)
             doc = html.fromstring(driver.page_source)
-            print("Response status code successful for url: {} and status code: {}".format(url, 200))
             logging.info("Response status code successful for url: {} and status code: {}".format(url, 200))
             driver.close()
             return doc
