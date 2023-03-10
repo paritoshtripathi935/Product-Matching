@@ -4,3 +4,4 @@ logs
 .log
 *startScraping.sh
 shScripts
+push-amazon.sh

@@ -8,3 +8,5 @@ source venv/bin/activate
 
 # Run the Python script
 python3 data/Amazon/scripts/main.py
+
+bash push-amazon.sh
