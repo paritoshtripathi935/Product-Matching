@@ -2,5 +2,5 @@ push.sh
 venv
 logs
 .log
-shScripts/startScraping.sh
-shScripts/startScraping.sh
+*startScraping.sh
+shScripts
