@@ -93,9 +93,11 @@ class Scraper:
             image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="landingImage"]//@src'))
             image_path = image_path[0]
         except Exception as e:
-            image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="imgTagWrapperId"]//@src'))
-            image_path = ''.join(image_path)
-            logging.error(f"Error while scraping product image for product {productUrl}: {e}")
+            try:
+                image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="imgTagWrapperId"]//@src'))
+                image_path = ''.join(image_path)
+            except:
+                logging.error(f"Error while scraping product image for product {productUrl}: {e}")
 
         category = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@class="a-link-normal a-color-tertiary"]//text()'))
         try:
