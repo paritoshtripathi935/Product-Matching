@@ -160,6 +160,7 @@ class Scraper:
 
 
 if __name__ == '__main__':
+    number_of_threads = 10
     scraper = Scraper()
 
     # Create logs folder if it doesn't exists
@@ -178,7 +179,7 @@ if __name__ == '__main__':
     
     scraper.db = AmazonDatabaseConnector(scraper.stamp)
     for keyword in product_categories:
-        scraper.main(keyword)
+        scraper.main(keyword, number_of_threads)
         scraper.pagination = 1
     
     scraper.db.removeDuplicates()
