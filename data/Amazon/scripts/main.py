@@ -85,9 +85,11 @@ class Scraper:
             description = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="productDescription"]//span//text()'))
             description = " ".join(description)
         except Exception as e:
-            description = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="feature-bullets"]//span//text()'))
-            description = " ".join(description)
-            logging.error(f"Error while scraping product description for product {productUrl}: {e}")
+            try:
+                description = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="feature-bullets"]//span//text()'))
+                description = " ".join(description)
+            except:
+                logging.error(f"Error while scraping product description for product {productUrl}: {e}")
 
         try:
             image_path = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@id="landingImage"]//@src'))
@@ -135,7 +137,7 @@ class Scraper:
         print(productDetails)
         return productDetails
 
-    def main(self, keyword):
+    def main(self, keyword, number_of_threads):
         # get products
         products = []
         for page in range(1, self.pagination+1):
@@ -147,7 +149,7 @@ class Scraper:
                 products.extend(self.getProducts(keyword, page))
 
         # get product details
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor(max_workers=number_of_threads) as executor:
             results = executor.map(self.getProductDetails, products)
 
             # save to db
