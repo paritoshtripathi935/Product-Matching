@@ -107,6 +107,10 @@ class Scraper:
         except:
             category = []
 
+        price = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@class="a-price-whole"]//text()'))[0]
+        price = price.replace(",", "")
+        price = int(price)
+
         if description == []:
             description = "None"
         
@@ -133,6 +137,7 @@ class Scraper:
         productDetails["category"] = str(category)
         productDetails["timestamp"] = str(self.stamp)
         productDetails["URL"] = str(productUrl)
+        productDetails['price'] = price
         
         print(productDetails)
         return productDetails
@@ -148,6 +153,7 @@ class Scraper:
             for page in range(2, self.pagination+1):
                 products.extend(self.getProducts(keyword, page))
 
+
         # get product details
         with ThreadPoolExecutor(max_workers=number_of_threads) as executor:
             results = executor.map(self.getProductDetails, products)
@@ -160,9 +166,10 @@ class Scraper:
 
 
 if __name__ == '__main__':
+    
     number_of_threads = 10
     scraper = Scraper()
-
+    
     # Create logs folder if it doesn't exists
     if not os.path.exists(scraper.storagePath + "logs"):
         os.makedirs(scraper.storagePath + "logs")
@@ -183,3 +190,4 @@ if __name__ == '__main__':
         scraper.pagination = 1
     
     scraper.db.removeDuplicates()
+    

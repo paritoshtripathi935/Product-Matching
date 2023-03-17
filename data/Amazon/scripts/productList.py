@@ -1,3 +1,4 @@
 product_categories = [
-    "Books"
+    "Books",
+    'Electronics'
 ]

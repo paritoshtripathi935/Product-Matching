@@ -18,14 +18,15 @@ class AmazonDatabaseConnector:
             image_path TEXT NOT NULL,
             category TEXT NOT NULL,
             timestamp TEXT NOT NULL,
-            URL TEXT NOT NULL
+            URL TEXT NOT NULL,
+            price TEXT NOT NULL
         );""")
         self.conn.commit()
         self.cur.execute("CREATE TABLE product_matches (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER NOT NULL, product_sku INTEGER NOT NULL, match_id INTEGER NOT NULL, match_sku INTEGER NOT NULL);")
         self.conn.commit()
     
     def insertProduct(self, productDetails):
-        self.cur.execute("INSERT INTO products (sku, name, description, image_path, category, timestamp, URL) VALUES (?, ?, ?, ?, ?, ?, ?)", (productDetails["sku"], productDetails["name"], productDetails["description"], productDetails["image_path"], productDetails["category"], productDetails["timestamp"], productDetails["URL"]))
+        self.cur.execute("INSERT INTO products (sku, name, description, image_path, category, timestamp, URL, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (productDetails["sku"], productDetails["name"], productDetails["description"], productDetails["image_path"], productDetails["category"], productDetails["timestamp"], productDetails["URL"], productDetails["price"]))
         self.conn.commit()
 
     def fetchAllProducts(self):
