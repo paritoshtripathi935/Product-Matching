@@ -107,9 +107,16 @@ class Scraper:
         except:
             category = []
 
-        price = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@class="a-price-whole"]//text()'))[0]
-        price = price.replace(",", "")
-        price = int(price)
+        try:
+            price = SeleniumScraper.cleanData(SeleniumScraper.get_xpath_data(doc, '//*[@class="a-price-whole"]//text()'))[0]
+            price = price.replace(",", "")
+            price = int(price)
+        except Exception as e:
+            logging.error(f"Error while scraping product price for product {productUrl}: {e}")
+            price = []
+
+        if price == []:
+            price = "None"
 
         if description == []:
             description = "None"
