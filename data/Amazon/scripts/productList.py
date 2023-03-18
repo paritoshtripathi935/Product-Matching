@@ -1,4 +1,6 @@
 product_categories = [
     "Books",
-    'Electronics'
+    "Laptops",
+    "Mobile Phones",
+    "Cameras",
 ]
