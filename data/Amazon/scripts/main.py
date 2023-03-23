@@ -16,16 +16,20 @@ SeleniumScraper = SeleniumScraper()
 
 class Scraper:
     def __init__(self):
+        self.rival = "amazon"
         self.stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") 
         self.storagePath = os.path.join(
             os.path.dirname(os.path.abspath(__file__)), "../"
         )
 
         logging.basicConfig(
-            filename=self.storagePath + "logs/amazonScraper_{}.log".format(self.stamp),
+            filename=self.storagePath + "logs/{}_Scraper_{}.log".format(self.rival, self.stamp),
             level=logging.INFO,
             filemode="w",
         )
+        if not os.path.exists(self.storagePath + "logs"):
+            print(f"Creating logs folder at {self.storagePath + 'logs'}")
+            os.makedirs(self.storagePath + "logs")
 
         self.url = "https://www.amazon.in/s?k={}&page={}&ref=sr_pg_{}"
         self.website = "https://www.amazon.in"
@@ -176,19 +180,15 @@ if __name__ == '__main__':
     
     number_of_threads = 10
     scraper = Scraper()
-    
-    # Create logs folder if it doesn't exists
-    if not os.path.exists(scraper.storagePath + "logs"):
-        os.makedirs(scraper.storagePath + "logs")
 
     # Log start of scraper
-    logging.info("Starting Amazon Scraper")
+    logging.info(f"Starting {scraper.rival} scraper")
 
     # make db amazon.db if it doesn't exist
-    if not os.path.exists(scraper.storagePath + "amazon.db"):
-        print(f'Creating amazon.db at {scraper.storagePath+"amazon.db"}')
+    if not os.path.exists(scraper.storagePath + scraper.rival + ".db"):
+        print(f'Creating amazon.db at {scraper.storagePath+ scraper.rival + ".db"}')
         db = AmazonDatabaseConnector(scraper.stamp)
-        logging.info("Creating amazon.db")  
+        logging.info(f"Creating {scraper.rival}.db")
         db.schemaMaker()
     
     scraper.db = AmazonDatabaseConnector(scraper.stamp)
