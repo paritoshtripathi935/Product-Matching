@@ -2,12 +2,17 @@ import logging
 from datetime import datetime
 from dbConnector import FlipkartDatabaseConnector
 from productList import product_categories
+from genricHtmlib import SeleniumScraper
 import os
+import lxml.html as html
 
+SeleniumScraper = SeleniumScraper()
 
 class Scraper:
     def __init__(self):
         self.rival: str = "flipkart"
+        self.website = "https://www.flipkart.com/search?q="
+        self.websiteName = "https://www.flipkart.com"
         self.stamp: str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") 
         self.storagePath: str = os.path.join(
             os.path.dirname(os.path.abspath(__file__)), "../"
@@ -21,6 +26,43 @@ class Scraper:
             level=logging.INFO,
             filemode="w",
         )
+        self.productLinksXpath = '//*[@rel="noopener noreferrer"]//@href'
+
+    def getProductList(self, keyword):
+        try:
+            productLinks = []
+            url = self.website + keyword
+            response = SeleniumScraper.fetch_request_normal(url)
+            if response is None:
+                doc = SeleniumScraper.fetch_request_selenium(url)
+            else:
+                doc = html.fromstring(response)
+            
+            Links = SeleniumScraper.get_xpath_link(doc, self.productLinksXpath, self.websiteName)
+            productLinks.extend(Links)
+
+            for page in range(2, 20):
+                url = self.website + keyword + "&page=" + str(page)
+                response = SeleniumScraper.fetch_request_normal(url)
+                if response is None:
+                    doc = SeleniumScraper.fetch_request_selenium(url)
+                else:
+                    doc = html.fromstring(response)
+                
+                Links = SeleniumScraper.get_xpath_link(doc, self.productLinksXpath, self.websiteName)
+                productLinks.extend(Links)
+
+            print(f'Total products for {keyword} is {len(productLinks)}')
+            return productLinks
+        
+        except Exception as e:
+            print(e)
+
+    def getProductDetails(self, productLink):
+        try:
+            pass
+        except Exception as e:
+            print(e)
 
     def start(self):
         number_of_threads: int = 10
@@ -38,6 +80,10 @@ class Scraper:
 
         self.db = FlipkartDatabaseConnector(self.stamp)
         print(self.db.welcomeMessage)
+
+        for category in product_categories:
+            self.getProductList(category)
+            break
 
 if __name__ == '__main__':
     scraper = Scraper()
