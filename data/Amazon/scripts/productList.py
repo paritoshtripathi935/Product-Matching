@@ -3,4 +3,8 @@ product_categories = [
     "Laptops",
     "Mobile Phones",
     "Cameras",
+    "Televisions",
+    "Headphones",
+    "Speakers",
+    "Watches",
 ]
