@@ -64,6 +64,7 @@ class SeleniumScraper:
                 if response.status_code == 200:
                     return response.text
             
+            
         except Exception as e:
             logging.info(
                 "Exception occurred for url: {} and exception: {}".format(url, e)
