@@ -11,6 +11,7 @@ import re
 from productList import product_categories
 import time
 import threading
+import requests
 SeleniumScraper = SeleniumScraper()
 
 
@@ -195,6 +196,9 @@ if __name__ == '__main__':
     for keyword in product_categories:
         scraper.main(keyword, number_of_threads)
         scraper.pagination = 1
+        # make new request session 
+        SeleniumScraper.reqSession = requests.Session()
+
     
     scraper.db.removeDuplicates()
     
