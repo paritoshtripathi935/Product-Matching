@@ -59,10 +59,32 @@ class Scraper:
             print(e)
 
     def getProductDetails(self, productLink):
+        response = SeleniumScraper.fetch_request_normal(productLink)
+        if response is None:
+            doc = SeleniumScraper.fetch_request_selenium(productLink)
+        else:
+            doc = html.fromstring(response)
+
         try:
-            pass
+            productName = SeleniumScraper.get_xpath_data(doc, '//*[@class="_35KyD6"]//text()')
+            productPrice = SeleniumScraper.get_xpath_data(doc, '//*[@class="_1vC4OE _3qQ9m1"]//text()')
+            productRating = SeleniumScraper.get_xpath_data(doc, '//*[@class="_3LWZlK _1BLPMq"]//text()')
+            productRatingCount = SeleniumScraper.get_xpath_data(doc, '//*[@class="_38sUEc"]//text()')
+            productDescription = SeleniumScraper.get_xpath_data(doc, '//*[@class="_1mXcCf RmoJUZ"]//text()')
+            productImage = SeleniumScraper.get_xpath_data(doc, '//*[@class="_3nWP9Q"]//@src')
+            productBrand = SeleniumScraper.get_xpath_data(doc, '//*[@class="_2B_pmu"]//text()')
+
+            print(productName)
+            print(productPrice)
+            print(productRating)
+            print(productRatingCount)
+            print(productDescription)
+            print(productImage)
+            print(productBrand)
         except Exception as e:
             print(e)
+        
+
 
     def start(self):
         number_of_threads: int = 10
@@ -82,8 +104,13 @@ class Scraper:
         print(self.db.welcomeMessage)
 
         for category in product_categories:
-            self.getProductList(category)
+            productUrls = self.getProductList(category)
+            for productUrl in productUrls:
+                self.getProductDetails(productUrl)
+                break
             break
+
+    
 
 if __name__ == '__main__':
     scraper = Scraper()
