@@ -1,5 +1,4 @@
 # Amazon Scraper
-
 import os
 import logging
 from datetime import datetime
@@ -9,11 +8,9 @@ from genricHtmlib import SeleniumScraper
 from lxml import html
 import re
 from productList import product_categories
-import time
-import threading
 import requests
-SeleniumScraper = SeleniumScraper()
 
+SeleniumScraper = SeleniumScraper()
 
 class Scraper:
     def __init__(self):
@@ -194,12 +191,12 @@ if __name__ == '__main__':
     
     scraper.db = AmazonDatabaseConnector(scraper.stamp)
     
+    
     for keyword in product_categories:
         scraper.main(keyword, number_of_threads)
         scraper.pagination = 1
         # make new request session 
         SeleniumScraper.reqSession = requests.Session()
-
     
     scraper.db.removeDuplicates()
     

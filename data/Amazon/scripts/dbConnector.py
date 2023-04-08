@@ -42,3 +42,6 @@ class AmazonDatabaseConnector:
     def removeDuplicates(self):
         self.cur.execute("DELETE FROM products WHERE rowid NOT IN (SELECT MIN(rowid) FROM products GROUP BY sku)")
         self.conn.commit()
+    
+    def convertDBtoCsv(self):
+        return

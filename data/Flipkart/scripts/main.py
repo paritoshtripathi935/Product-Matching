@@ -81,6 +81,7 @@ class Scraper:
             print(productDescription)
             print(productImage)
             print(productBrand)
+            
         except Exception as e:
             print(e)
         

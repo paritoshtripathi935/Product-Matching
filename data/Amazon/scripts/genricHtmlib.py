@@ -1,4 +1,3 @@
-import asyncio
 from multiprocessing import Pool
 import httpx
 import logging
@@ -11,10 +10,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import warnings
 import requests
-import json
-import ndjson
-from useragent import get_ua
-
 warnings.filterwarnings("ignore")
 
 class SeleniumScraper:
