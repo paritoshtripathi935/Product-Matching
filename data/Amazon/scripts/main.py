@@ -148,6 +148,7 @@ class Scraper:
         productDetails["URL"] = str(productUrl)
         productDetails['price'] = price
         
+        
         print(productDetails)
         return productDetails
 
