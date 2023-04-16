@@ -5,3 +5,4 @@ logs
 *startScraping.sh
 shScripts
 push-amazon.sh
+push-flipkart.sh

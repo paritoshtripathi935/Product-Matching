@@ -1,7 +1,11 @@
 product_categories = [
-    "iPhone",
-    "iPad",
-    "MacBook",
-    "MacBook Air",
-    "MacBook Pro",
+    'mobiles',
+    'laptops',
+    'televisions',
+    'cameras',
+    'headphones',
+    'speakers',
+    'watches',
+    'air-conditioners',
+    'refrigerators',
 ]

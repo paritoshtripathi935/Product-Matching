@@ -79,7 +79,7 @@ class SeleniumScraper:
             response = self.reqSession.get(url, headers=headers)
 
             if response.status_code == 200:
-                print("Response status code successful for url: {} and status code: {}".format(url, 200))
+                #print("Response status code successful for url: {} and status code: {}".format(url, 200))
                 return response.text
             
             if response.status_code == 301:

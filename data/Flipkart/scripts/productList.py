@@ -1,3 +1,11 @@
 product_categories = [
-    "mobiles",
+    'mobiles',
+    'laptops',
+    'televisions',
+    'cameras',
+    'headphones',
+    'speakers',
+    'watches',
+    'air-conditioners',
+    'refrigerators',
 ]
