@@ -7,8 +7,8 @@ cd /home/pamripose/myprojects/Product-Matching
 source venv/bin/activate
 
 # Run the Python script
-python3 data/Amazon/scripts/main.py
+# python3 data/Amazon/scripts/main.py
 python3 data/Flipkart/scripts/main.py
 
-bash push-amazon.sh
+# bash push-amazon.sh
 bash push-flipkart.sh
