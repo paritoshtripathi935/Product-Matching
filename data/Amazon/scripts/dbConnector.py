@@ -44,4 +44,9 @@ class AmazonDatabaseConnector:
         self.conn.commit()
     
     def convertDBtoCsv(self):
-        return
+        self.cur.execute("SELECT * FROM products")
+        with open('products.csv', 'w') as f:
+            for row in self.cur:
+                f.write(str(row))
+                f.write(' ')
+        self.conn.commit()
