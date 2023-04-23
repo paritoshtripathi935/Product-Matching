@@ -6,3 +6,6 @@ logs
 shScripts
 push-amazon.sh
 push-flipkart.sh
+push-flipkart.sh
+data/models/RandomForest/savedModels
+.vscode
