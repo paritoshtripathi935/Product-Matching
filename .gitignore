@@ -1,0 +1,10 @@
+push.sh
+venv
+logs
+.log
+*startScraping.sh
+shScripts
+push-amazon.sh
+push-flipkart.sh
+data/models/RandomForest/savedModels
+.vscode
