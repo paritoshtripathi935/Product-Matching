@@ -60,6 +60,7 @@
 	<li>Month 1: Data Collection and Preprocessing</li>
 	<li>Month 2: Model Development and Testing</li>
 	<li>Month 3: Model Deployment and Optimization</li>
+	<li>Month 4: GUI devleopement using Flask/Fastapi</li>
 </ol>
 
 </body>
