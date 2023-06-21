@@ -66,4 +66,28 @@
 </body>
 </html>
 
+### Note: Datasets in this repository are intended for research and educational use only.
+
+Dear users,
+We would like to bring to your attention that the datasets provided in this repository are solely meant for research and educational purposes. These datasets have been carefully curated and compiled to facilitate scientific exploration, analysis, and learning.
+
+While we encourage the use of these datasets to further knowledge and understanding in various fields, we want to emphasize that their usage should be limited to research and educational endeavors. It is essential to respect the terms and conditions associated with each dataset and adhere to any applicable licenses or permissions.
+
+As you engage with the datasets, we kindly request that you keep the following guidelines in mind:
+
+- Research Use: The datasets are intended for conducting research and analysis. They can be utilized to investigate and develop new methods, algorithms, models, or techniques. Please ensure that your work aligns with the principles of responsible and ethical research.
+
+- Educational Use: Students, educators, and researchers are encouraged to leverage these datasets for educational purposes, such as teaching, coursework, or academic projects. They can serve as valuable resources for understanding real-world scenarios and conducting hands-on experiments.
+
+- Respect Data Usage Restrictions: Some datasets may have specific terms of use, licenses, or restrictions associated with them. It is crucial to adhere to these requirements and honor any limitations on data access, redistribution, or commercial use.
+
+- Attribution: When utilizing these datasets, it is recommended to provide appropriate attribution. Cite the original sources and acknowledge the efforts of the data providers to promote transparency and intellectual integrity.
+
+- Data Privacy and Security: Respect the privacy and confidentiality of any personal or sensitive information within the datasets. Handle the data responsibly and ensure compliance with relevant privacy laws and regulations.
+
+Remember that the datasets made available here are the result of extensive efforts, collaboration, and data sharing. By adhering to these guidelines, we can collectively contribute to a culture of responsible data usage and foster a positive and impactful research and educational community.
+
+Should you have any questions or concerns regarding the datasets or their usage, please feel free to reach out to us. We are here to support and assist you in your research and learning endeavors.
+
+Thank you for your understanding and cooperation.
 
