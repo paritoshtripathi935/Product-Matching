@@ -1,1 +1,0 @@
-# Sample utility source code
