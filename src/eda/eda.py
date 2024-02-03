@@ -1,34 +1,39 @@
-# connect with the database
 import sqlite3
 import os
 import sys
 import time
 import datetime
+import pandas as pd
+import numpy as np
 
-def connect(db_name: str):
-    # check if the database exists
-    if not os.path.exists(db_name):
-        print(f"The database {db_name} does not exist")
-        sys.exit(1)
-    
-    conn = sqlite3.connect(db_name)
-    cursor = conn.cursor()
-    return cursor
+sys.path.append("src")
+from utils import DatabaseUtils, LoggerUtil
 
-def generate_stats(database: str):
-    stats = {}
-    cursor = connect(database)
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = cursor.fetchall()
-    stats["tables"] = tables
-    print(f"Tables in the database: {tables}")
+class AutoEDA:
+    """
+    This is a class to perform exploratory data analysis.
+     
+    Features:
+        - This class will take a dataframe as input and perform exploratory data analysis.
+        - Anyone can use this class to perform exploratory data analysis.
     
+    Attributes:
+        - dataframe (pd.DataFrame): The dataframe to perform exploratory data analysis.
         
-    cursor.execute("SELECT COUNT(DISTINCT sku) FROM products")
-    products = cursor.fetchall()
-    print(f"Total unique products: {products[0][0]}")
-    stats["products"] = products[0][0]
+    Methods:
+     
+    Output:
+        - generate_stats: This method will generate statistics of the dataframe.
+        - generate_plots: This method will generate plots of the dataframe.
+        - generate_report: This method will generate a report of the dataframe.
+        
+    Optional:
+        - Plotly Dashboard: This class will also generate a plotly dashboard.
+        - If the user wants to generate a plotly dashboard, they can use the generate_dashboard method.
+     
+    Example:
+    """
     
-    return stats
-
+    def __init__(self, dataframe: pd.DataFrame):
+        self.dataframe = dataframe
 
