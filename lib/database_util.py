@@ -1,12 +1,12 @@
 import sqlite3
 import os
+import sys
 
-class AmazonDatabaseConnector:
-    def __init__(self, stamp):
-        self.dbPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../amazon.db")
-        self.conn = sqlite3.connect(self.dbPath)
-        self.cur = self.conn.cursor()
-        self.welcomeMessage = "Welcome to Amazon Scraper. This is the database for the Amazon Scraper. This database was created on {}.".format(stamp)
+class DatabaseUtil:
+    def __init__(self, stamp, database_name):
+        self.dbPath = "data/{}.db".format(database_name)
+        self.conn, self.cur = self.connect(self.dbPath)
+        self.welcomeMessage = f"Welcome to {database_name} Scraper. This is the database for the {database_name} Scraper. This database was created on {stamp}."
 
     def schemaMaker(self):
         # creating tables
@@ -50,3 +50,19 @@ class AmazonDatabaseConnector:
                 f.write(str(row))
                 f.write(' ')
         self.conn.commit()
+    
+    def connect(self, db_name: str):
+        if not os.path.exists(db_name):
+            print(f"The database {db_name} does not exist")
+            sys.exit(1)
+        
+        conn = sqlite3.connect(db_name)
+        cursor = conn.cursor()
+        return conn, cursor
+
+    def generate_stats(self):
+        cursor = self.connect(self.database)
+        cursor.execute("SELECT COUNT(DISTINCT sku) FROM products")
+        products = cursor.fetchall()
+        self.stats["products"] = products[0][0]
+        return self.stats

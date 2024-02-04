@@ -2,9 +2,7 @@
 import os
 import logging
 from datetime import datetime
-from dbConnector import AmazonDatabaseConnector
 from concurrent.futures import ThreadPoolExecutor
-from genricHtmlib import SeleniumScraper
 from lxml import html
 import re
 from productList import product_categories
@@ -16,19 +14,6 @@ class Scraper:
     def __init__(self):
         self.rival = "amazon"
         self.stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") 
-        self.storagePath = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "../"
-        )
-
-        logging.basicConfig(
-            filename=self.storagePath + "logs/{}_Scraper_{}.log".format(self.rival, self.stamp),
-            level=logging.INFO,
-            filemode="w",
-        )
-        if not os.path.exists(self.storagePath + "logs"):
-            print(f"Creating logs folder at {self.storagePath + 'logs'}")
-            os.makedirs(self.storagePath + "logs")
-
         self.url = "https://www.amazon.in/s?k={}&page={}&ref=sr_pg_{}"
         self.website = "https://www.amazon.in"
         self.productUrlXpath = '//*[@class="a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal"]//@href'
@@ -51,8 +36,6 @@ class Scraper:
             print(f"Found {len(productUrls)} products for product {keyword} on page {page}")
 
             pagination = SeleniumScraper.get_xpath_link(doc, self.paginationXpath, self.website)
-            # 1-48 of over 40,000 results for
-            # need 48 using regex
             pagination = re.findall(r'\d+', pagination[0])
             self.pagination = int(pagination[1])
             return productUrls

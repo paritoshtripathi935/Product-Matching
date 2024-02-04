@@ -1,13 +1,9 @@
-import sqlite3
 import os
 import sys
 import time
 import datetime
 import pandas as pd
 import numpy as np
-
-sys.path.append("src")
-from utils import DatabaseUtils, LoggerUtil
 
 class AutoEDA:
     """
@@ -36,4 +32,27 @@ class AutoEDA:
     
     def __init__(self, dataframe: pd.DataFrame):
         self.dataframe = dataframe
+        if not isinstance(self.dataframe, pd.DataFrame):
+            raise ValueError("Dataframe is not correct.")
+        
+    
+    def _generate_basic_stats(self):
+        """
+        This method will generate basic statistics of the dataframe.
+        """
+        stats = self.dataframe.describe()
+        
+        # analyze the data types of the dataframe and suggest the user to convert the data types.
+        data_types = self.dataframe.dtypes
+        data_types = data_types.reset_index()
+        data_types.columns = ['Feature', 'Data Type']
+        data_types = data_types.groupby('Data Type').count()
+        data_types = data_types.reset_index()
+        data_types.columns = ['Data Type', 'Count']
+        
+        return stats, data_types
 
+        
+    
+
+    
