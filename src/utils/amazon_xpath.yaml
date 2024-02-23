@@ -1,0 +1,26 @@
+scraper: amazon
+data_points:
+  - product_url: '//*[@class="a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal"]//@href'
+    - fallback: '//*[@class="a-link-normal a-text-normal"]//@href'
+  
+  - pagination: '//*[@class="a-section a-spacing-small a-spacing-top-small"]//span[1]//text()'
+    - fallback: '//*[@class="a-pagination"]//li//text()'
+  
+  - product_title: '//*[@id="productTitle"]//text()'
+    - fallback: '//*[@id="title"]//text()'
+  
+  - product_description: '//*[@id="productDescription"]//span//text()'
+    - fallback: '//*[@id="feature-bullets"]//span//text()'
+  
+  - product_image: '//*[@id="landingImage"]//@src'
+    - fallback: '//*[@id="imgTagWrapperId"]//img//@src'
+  
+  - product_category: '//*[@class="a-link-normal a-color-tertiary"]//text()'
+    - fallback: '//*[@class="a-unordered-list a-horizontal a-size-small"]//text()'
+  
+  - product_price: '//*[@class="a-price-whole"]//text()'
+    - fallback: '//*[@id="priceblock_ourprice"]//text()'
+  
+  - product_rating: '//*[@id="acrPopover"]//@title'
+    - fallback: '//*[@id="averageCustomerReviews"]//span//text()'
+  
